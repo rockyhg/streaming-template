@@ -28,17 +28,12 @@ def video_frame_callback(frame):
     return av.VideoFrame.from_ndarray(img, format="bgr24")
 
 
-def main():
-    st.title("Real-time video streaming")
-    st.caption("リアルタイムのカメラ画像を表示します")
+st.title("Real-time video streaming")
+st.caption("リアルタイムのカメラ画像を表示します")
 
-    webrtc_streamer(
-        key="streamer",
-        video_frame_callback=video_frame_callback,
-        rtc_configuration={"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]},
-        async_processing=True,
-    )
-
-
-if __name__ == "__main__":
-    main()
+webrtc_streamer(
+    key="streamer",
+    video_frame_callback=video_frame_callback,
+    rtc_configuration={"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]},
+    async_processing=True,
+)
