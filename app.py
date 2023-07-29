@@ -10,6 +10,7 @@ def video_frame_callback(frame):
     img = frame.to_ndarray(format="bgr24")
 
     # ここに、カメラ画像 img に対する処理を記述する
+    # 【サンプル】バウンディングボックスとラベルを表示する
     BOXES = [(10, 10, 100, 100), (50, 60, 150, 150)]
     LABELS = ["Object A", "Object B"]
     COLORS = [(15, 15, 255), (0, 128, 0)]
