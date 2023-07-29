@@ -3,5 +3,5 @@ black
 isort
 numpy
 streamlit
-streamlit-webrtc
+streamlit-webrtc==0.45.1
 opencv-python-headless
