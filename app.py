@@ -1,7 +1,7 @@
 import av
 import cv2
 import streamlit as st
-from streamlit_webrtc import webrtc_streamer
+from streamlit_webrtc import WebRtcMode, webrtc_streamer
 
 # https://github.com/whitphx/streamlit-webrtc
 
@@ -20,9 +20,7 @@ def video_frame_callback(frame):
         cv2.rectangle(img, (xmin, ymin), (xmax, ymax), COLORS[i], 2)
         x = xmin + 5 if xmin + 5 < xmax - 5 else xmin
         y = ymin - 10 if ymin - 10 > 15 else ymin + 15
-        cv2.putText(
-            img, LABELS[i], (x, y), cv2.FONT_HERSHEY_SIMPLEX, 0.5, COLORS[i], 2
-        )
+        cv2.putText(img, LABELS[i], (x, y), cv2.FONT_HERSHEY_SIMPLEX, 0.5, COLORS[i], 2)
     # 処理ここまで
 
     return av.VideoFrame.from_ndarray(img, format="bgr24")
@@ -31,9 +29,20 @@ def video_frame_callback(frame):
 st.title("Real-time video streaming")
 st.caption("リアルタイムのカメラ画像を表示します")
 
-webrtc_streamer(
-    key="streamer",
+# webrtc_streamer(
+#     key="streamer",
+#     video_frame_callback=video_frame_callback,
+#     rtc_configuration={"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]},
+#     async_processing=True,
+# )
+webrtc_ctx = webrtc_streamer(
+    key="object-detection",
+    mode=WebRtcMode.SENDRECV,
+    rtc_configuration={
+        "iceServers": {"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]},
+        "iceTransportPolicy": "relay",
+    },
     video_frame_callback=video_frame_callback,
-    rtc_configuration={"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]},
+    media_stream_constraints={"video": True, "audio": False},
     async_processing=True,
 )
