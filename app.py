@@ -3,6 +3,8 @@ import cv2
 import streamlit as st
 from streamlit_webrtc import WebRtcMode, webrtc_streamer
 
+from turn import get_ice_servers
+
 # https://github.com/whitphx/streamlit-webrtc
 
 
@@ -39,7 +41,7 @@ webrtc_ctx = webrtc_streamer(
     key="object-detection",
     mode=WebRtcMode.SENDRECV,
     rtc_configuration={
-        "iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}],
+        "iceServers": get_ice_servers(),
         "iceTransportPolicy": "relay",
     },
     video_frame_callback=video_frame_callback,
