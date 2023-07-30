@@ -31,13 +31,7 @@ def video_frame_callback(frame):
 st.title("Real-time video streaming")
 st.caption("リアルタイムのカメラ画像を表示します")
 
-# webrtc_streamer(
-#     key="streamer",
-#     video_frame_callback=video_frame_callback,
-#     rtc_configuration={"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]},
-#     async_processing=True,
-# )
-webrtc_ctx = webrtc_streamer(
+webrtc_streamer(
     key="object-detection",
     mode=WebRtcMode.SENDRECV,
     rtc_configuration={
