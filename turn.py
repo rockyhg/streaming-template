@@ -3,6 +3,10 @@ import os
 
 import streamlit as st
 from twilio.rest import Client
+from dotenv import load_dotenv
+
+# .envファイルがあれば読み込む
+load_dotenv()
 
 logger = logging.getLogger(__name__)
 
