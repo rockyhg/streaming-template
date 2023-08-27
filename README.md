@@ -6,6 +6,7 @@ Streamlit上でリアルタイム画像処理を行うためのテンプレー�
 [streamlit-webrtc](https://github.com/whitphx/streamlit-webrtc) というライブラリを使用し、リアルタイムのカメラ画像をウェブブラウザ上に表示することができます
 
 ## デモ用Webアプリ
+
 このテンプレートをデプロイしたWebアプリです。
 
 https://streaming-template.streamlit.app
@@ -35,16 +36,18 @@ https://streaming-template.streamlit.app
      - Account SID
      - Auth Token
 8. 環境変数ファイル作成
-    - 同フォルダ内に、`.env`（拡張子のみ）というファイルを作成
-	- ACCOUNT SID, AUTH TOKENを記入
+   - 同フォルダ内に、`.env`（拡張子のみ）というファイルを作成
+   - ACCOUNT SID, AUTH TOKENを記入
+   - Twilioのアカウント情報を環境変数に格納するため
+
 ```
 TWILIO_ACCOUNT_SID="<自分のAccount SID>"
 TWILIO_AUTH_TOKEN="<自分のAuth Token>"
 ```
 
-9. ローカル動作確認
+1. ローカル動作確認
     - `$ streamlit run app.py`
-10. [Streamlit Cloud](https://share.streamlit.io/)にデプロイ
+2.  [Streamlit Cloud](https://share.streamlit.io/)にデプロイ
 	- [New app] ボタン
 	- 必要事項を入力
 	- [Advanced settings...] リンク
@@ -59,7 +62,9 @@ TWILIO_AUTH_TOKEN="<自分のAuth Token>"
   - TURNサーバーは、直接通信が難しいネットワーク環境でも、データを中継することで通信を可能にするものです
 - このテンプレートでは、TwilioというサービスのTURNサーバーを使用しています
 - ローカル環境でも動作させたい場合は、python-dotenvというライブラリを使用し、`.env`ファイルに環境変数を記載します
+- 【注意】`.env` ファイルにはアカウント情報が含まれているので、GitHubには公開しないようにします。このため、`.gitignore`ファイルに`.env`を記載しています
 
 ## References
+
 - [whitphx/streamlit-webrtc: Real-time video and audio streams over the network, with Streamlit.](https://github.com/whitphx/streamlit-webrtc)
 - [whitphx/streamlit-webrtc-example](https://github.com/whitphx/streamlit-webrtc-example/blob/main/app.py)
