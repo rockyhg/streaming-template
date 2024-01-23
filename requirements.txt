@@ -1,6 +1,7 @@
 python-dotenv
 numpy
 streamlit
-streamlit-webrtc==0.45.1
-twilio~=8.4.0
+streamlit-webrtc
+twilio
 opencv-python-headless
+watchdog
